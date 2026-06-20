@@ -1,11 +1,13 @@
 :root {
-  --green: #0f7b4f;
-  --deep-green: #063f34;
-  --red: #d8233a;
-  --soft-red: #ff6f83;
-  --white: #fff9f4;
-  --gold: #f3c86b;
-  --ink: #17332d;
+  --algeria-green: #0b8f5a;
+  --deep-green: #064638;
+  --algeria-red: #d8233a;
+  --birthday-blue: #3aa7ff;
+  --midnight-blue: #0a2b66;
+  --soft-blue: #dff3ff;
+  --cream: #fffaf2;
+  --gold: #ffd36e;
+  --ink: #123047;
 }
 
 * {
@@ -15,12 +17,12 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: "Segoe UI", Arial, sans-serif;
-  color: var(--white);
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--cream);
   background:
-    radial-gradient(circle at 18% 18%, rgba(255, 111, 131, 0.22), transparent 28rem),
-    radial-gradient(circle at 82% 12%, rgba(243, 200, 107, 0.2), transparent 24rem),
-    linear-gradient(135deg, #052820 0%, #0f6048 46%, #8b1732 100%);
+    radial-gradient(circle at 18% 20%, rgba(58, 167, 255, 0.36), transparent 28rem),
+    radial-gradient(circle at 86% 10%, rgba(255, 211, 110, 0.26), transparent 22rem),
+    linear-gradient(135deg, #081d4d 0%, var(--midnight-blue) 34%, var(--deep-green) 68%, #741229 100%);
   overflow-x: hidden;
 }
 
@@ -32,44 +34,78 @@ button {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: clamp(14px, 3vw, 34px);
 }
 
-.love-scene {
+.birthday-card {
   position: relative;
-  width: min(1120px, 100%);
-  min-height: min(780px, calc(100vh - 48px));
-  display: grid;
-  align-content: center;
-  gap: 26px;
+  width: min(1160px, 100%);
+  min-height: min(840px, calc(100vh - 48px));
   padding: clamp(28px, 5vw, 72px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 34px;
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(8, 102, 68, 0.62), rgba(255, 255, 255, 0.1) 50%, rgba(196, 25, 54, 0.5)),
-    rgba(3, 25, 21, 0.66);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.26);
+    linear-gradient(90deg, rgba(11, 143, 90, 0.72), rgba(255, 255, 255, 0.13) 50%, rgba(216, 35, 58, 0.52)),
+    rgba(8, 29, 77, 0.76);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.28);
 }
 
-.love-scene::before {
+.birthday-card::before {
   content: "";
   position: absolute;
   inset: 0;
   background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
     linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(to bottom, black, transparent 75%);
+  background-position: 0 0, 0 0, 0 0;
+  background-size: 26px 26px, 84px 84px, 84px 84px;
+  mask-image: linear-gradient(to bottom, black, transparent 86%);
   pointer-events: none;
 }
 
-.sky,
-.intro,
-.question-area,
+.language-panel,
+.hero-content,
+.wish-card,
+.love-notes,
+.surprise-button,
 .surprise {
   position: relative;
   z-index: 1;
+}
+
+.language-panel {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: clamp(36px, 7vw, 76px);
+}
+
+.language-label {
+  margin-right: 4px;
+  font-size: 0.88rem;
+  opacity: 0.8;
+}
+
+.language-button {
+  min-width: 42px;
+  min-height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  color: var(--cream);
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.language-button:hover,
+.language-button:focus-visible,
+.language-button.is-active {
+  transform: translateY(-1px);
+  background: var(--birthday-blue);
+  color: #05203f;
 }
 
 .sky {
@@ -79,71 +115,42 @@ button {
   pointer-events: none;
 }
 
-.moon {
+.moon,
+.crescent {
   position: absolute;
-  top: 72px;
-  right: clamp(44px, 9vw, 128px);
-  width: 118px;
-  height: 118px;
+  width: clamp(74px, 10vw, 124px);
+  height: clamp(74px, 10vw, 124px);
   border-radius: 50%;
-  background: var(--white);
-  box-shadow: 0 0 44px rgba(255, 249, 244, 0.54);
+}
+
+.moon {
+  top: clamp(74px, 12vw, 136px);
+  right: clamp(34px, 9vw, 132px);
+  background: var(--cream);
+  box-shadow: 0 0 50px rgba(255, 250, 242, 0.58);
 }
 
 .crescent {
-  position: absolute;
-  top: 64px;
-  right: clamp(70px, 11vw, 156px);
-  width: 118px;
-  height: 118px;
-  border-radius: 50%;
-  background: #0a4a3a;
+  top: clamp(66px, 11vw, 126px);
+  right: clamp(56px, 11vw, 164px);
+  background: #0b5c66;
 }
 
 .star {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 18px var(--gold);
+  color: var(--gold);
+  text-shadow: 0 0 18px rgba(255, 211, 110, 0.9);
   animation: twinkle 2.8s ease-in-out infinite;
 }
 
-.star-one { top: 16%; left: 14%; }
-.star-two { top: 28%; left: 76%; animation-delay: 0.4s; }
-.star-three { top: 62%; left: 12%; animation-delay: 0.8s; }
-.star-four { top: 72%; left: 86%; animation-delay: 1.2s; }
-.star-five { top: 42%; left: 48%; animation-delay: 1.6s; }
+.star-one { top: 18%; left: 13%; font-size: 1.2rem; }
+.star-two { top: 30%; left: 78%; font-size: 0.9rem; animation-delay: 0.45s; }
+.star-three { top: 60%; left: 10%; font-size: 1.4rem; animation-delay: 0.8s; }
+.star-four { top: 74%; left: 88%; font-size: 1rem; animation-delay: 1.2s; }
+.star-five { top: 45%; left: 50%; font-size: 0.8rem; animation-delay: 1.6s; }
 
-.spark {
-  position: absolute;
-  width: 160px;
-  height: 160px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transform: rotate(45deg);
-  animation: drift 9s ease-in-out infinite;
-}
-
-.spark-one {
-  left: -40px;
-  bottom: 80px;
-}
-
-.spark-two {
-  right: 15%;
-  bottom: -70px;
-  animation-delay: -3s;
-}
-
-.spark-three {
-  left: 42%;
-  top: -95px;
-  animation-delay: -6s;
-}
-
-.intro {
-  max-width: 760px;
+.hero-content {
+  max-width: 790px;
 }
 
 .arabic-line,
@@ -155,8 +162,18 @@ button {
 }
 
 .arabic-line {
-  font-size: clamp(2rem, 7vw, 5rem);
+  font-size: clamp(2.2rem, 7vw, 5rem);
   line-height: 1;
+}
+
+.kicker {
+  display: inline-flex;
+  margin: 18px 0 16px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: var(--soft-blue);
+  background: rgba(58, 167, 255, 0.2);
+  font-weight: 700;
 }
 
 h1,
@@ -166,84 +183,156 @@ p {
 }
 
 h1 {
-  max-width: 820px;
+  max-width: 900px;
   margin-bottom: 18px;
-  font-size: clamp(2.8rem, 10vw, 6.8rem);
+  font-size: clamp(2.6rem, 9vw, 6.6rem);
   line-height: 0.95;
-  letter-spacing: 0;
+}
+
+.subtitle,
+.wish-card p,
+.surprise p:last-child {
+  font-size: clamp(1.02rem, 2vw, 1.24rem);
+  line-height: 1.7;
 }
 
 .subtitle {
-  max-width: 650px;
+  max-width: 690px;
+  color: rgba(255, 250, 242, 0.88);
+}
+
+.wish-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 820px;
+  margin: 30px 0;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(10px);
+}
+
+.wish-icon {
+  display: grid;
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border-radius: 18px;
+  background: var(--cream);
+  font-size: 1.8rem;
+}
+
+.wish-card p {
   margin-bottom: 0;
-  font-size: clamp(1rem, 2vw, 1.22rem);
-  line-height: 1.7;
-  color: rgba(255, 249, 244, 0.84);
 }
 
-.question-area {
-  max-width: 560px;
-  padding-top: 8px;
+.love-notes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
 }
 
-.question {
+.note-card {
+  min-height: 210px;
+  padding: 22px;
+  border-radius: 26px;
+  background: rgba(255, 250, 242, 0.94);
+  color: var(--ink);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
+}
+
+.note-card span {
+  display: inline-block;
   margin-bottom: 18px;
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  font-weight: 700;
+  color: var(--algeria-red);
+  font-weight: 900;
 }
 
-.buttons {
+.note-card h2 {
+  margin-bottom: 10px;
+  color: var(--midnight-blue);
+  font-size: 1.22rem;
+}
+
+.note-card p {
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+.recadinho-question {
   position: relative;
-  min-height: 76px;
+  z-index: 1;
+  max-width: 680px;
+  margin: 10px 0 30px;
+  padding: 22px;
+  border: 2px solid rgba(255, 211, 110, 0.72);
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(58, 167, 255, 0.28), rgba(255, 255, 255, 0.14));
+  box-shadow: 0 22px 58px rgba(58, 167, 255, 0.22), inset 0 0 34px rgba(255, 255, 255, 0.08);
+}
+
+.recadinho-title {
+  margin-bottom: 14px;
+  font-size: clamp(1.45rem, 4vw, 2.45rem);
+  font-weight: 900;
+}
+
+.recadinho-actions {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 14px;
-  flex-wrap: wrap;
+  min-height: 96px;
 }
 
-.yes-button,
+.surprise-button,
 .no-button {
-  min-width: 122px;
-  min-height: 52px;
+  min-height: 54px;
+  padding: 0 24px;
   border: 0;
   border-radius: 999px;
-  color: var(--ink);
+  color: #062448;
+  background: linear-gradient(135deg, var(--gold), var(--birthday-blue));
+  font-weight: 800;
   cursor: pointer;
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  box-shadow: 0 16px 36px rgba(58, 167, 255, 0.28);
+  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.yes-button {
-  background: var(--gold);
-  font-weight: 700;
-  box-shadow: 0 12px 34px rgba(243, 200, 107, 0.3);
-}
-
-.yes-button:hover,
-.yes-button:focus-visible {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 18px 42px rgba(243, 200, 107, 0.4);
+.surprise-button:hover,
+.surprise-button:focus-visible {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 20px 46px rgba(58, 167, 255, 0.38);
 }
 
 .no-button {
-  position: relative;
-  background: rgba(255, 255, 255, 0.88);
-  font-weight: 600;
+  background: rgba(255, 250, 242, 0.94);
+  box-shadow: 0 14px 32px rgba(255, 250, 242, 0.16);
 }
 
 .no-button.is-running {
   position: absolute;
+  z-index: 2;
 }
 
-.hint {
-  min-height: 28px;
-  margin: 6px 0 0;
-  color: rgba(255, 249, 244, 0.78);
+.recadinho-hint {
+  min-height: 26px;
+  margin: 8px 0 0;
+  color: rgba(255, 250, 242, 0.86);
+  font-weight: 700;
 }
 
 .surprise {
   display: none;
-  max-width: 920px;
-  padding-top: 16px;
+  max-width: 840px;
+  margin-top: 26px;
+  padding: 26px;
+  border-radius: 28px;
+  background: rgba(5, 30, 70, 0.56);
+  border: 1px solid rgba(255, 255, 255, 0.24);
 }
 
 .surprise.is-visible {
@@ -251,61 +340,15 @@ h1 {
   animation: reveal 650ms ease both;
 }
 
-.reveal-kicker {
-  margin-bottom: 10px;
-  color: var(--gold);
-  font-weight: 700;
-}
-
-h2 {
-  max-width: 820px;
-  margin-bottom: 24px;
-  font-size: clamp(1.85rem, 5vw, 4rem);
+.surprise h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.7rem, 4vw, 3.6rem);
   line-height: 1.08;
-  letter-spacing: 0;
-}
-
-.message-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.message-card {
-  min-height: 154px;
-  padding: 20px;
-  border-radius: 8px;
-  background: rgba(255, 249, 244, 0.92);
-  color: var(--ink);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
-}
-
-.message-card span {
-  display: inline-block;
-  margin-bottom: 20px;
-  color: var(--red);
-  font-weight: 800;
-}
-
-.message-card p {
-  margin-bottom: 0;
-  line-height: 1.58;
-}
-
-.final-note {
-  margin-top: 22px;
-  padding: 22px 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .arabic-love {
-  margin-bottom: 4px;
-  font-size: clamp(2rem, 6vw, 4.6rem);
-}
-
-.final-note p:last-child {
-  margin-bottom: 0;
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  margin-bottom: 6px;
+  font-size: clamp(2rem, 6vw, 4.4rem);
 }
 
 .floating-heart {
@@ -313,9 +356,9 @@ h2 {
   width: 24px;
   height: 24px;
   transform: rotate(45deg);
-  background: var(--soft-red);
+  background: var(--algeria-red);
   opacity: 0;
-  animation: heart-float 4.8s ease-in-out infinite;
+  animation: heart-float 5s ease-in-out infinite;
 }
 
 .floating-heart::before,
@@ -328,129 +371,75 @@ h2 {
   background: inherit;
 }
 
-.floating-heart::before {
-  left: -12px;
-}
+.floating-heart::before { left: -12px; }
+.floating-heart::after { top: -12px; }
+.heart-one { right: 11%; top: 35%; }
+.heart-two { right: 28%; top: 16%; animation-delay: 1.4s; background: var(--birthday-blue); }
+.heart-three { left: 7%; bottom: 22%; animation-delay: 2.5s; }
 
-.floating-heart::after {
-  top: -12px;
-}
-
-.heart-a {
-  right: 10%;
-  top: 10%;
-}
-
-.heart-b {
-  right: 26%;
-  top: 34%;
-  animation-delay: 1.2s;
-}
-
-.heart-c {
-  left: 7%;
-  bottom: 20%;
-  animation-delay: 2.4s;
-}
-
-body.celebrating .love-scene {
+body.is-celebrating .birthday-card {
   animation: warm-glow 900ms ease both;
 }
 
+html[dir="rtl"] .language-panel,
+html[dir="rtl"] .wish-card {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] body {
+  text-align: right;
+}
+
 @keyframes twinkle {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.45;
-  }
-  50% {
-    transform: scale(2.4);
-    opacity: 1;
-  }
-}
-
-@keyframes drift {
-  0%, 100% {
-    transform: translateY(0) rotate(45deg);
-  }
-  50% {
-    transform: translateY(-22px) rotate(52deg);
-  }
-}
-
-@keyframes reveal {
-  from {
-    transform: translateY(18px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.8); opacity: 1; }
 }
 
 @keyframes heart-float {
-  0% {
-    transform: translateY(20px) rotate(45deg) scale(0.7);
-    opacity: 0;
-  }
-  25%, 70% {
-    opacity: 0.78;
-  }
-  100% {
-    transform: translateY(-90px) rotate(45deg) scale(1.05);
-    opacity: 0;
-  }
+  0% { transform: translateY(22px) rotate(45deg) scale(0.72); opacity: 0; }
+  25%, 70% { opacity: 0.74; }
+  100% { transform: translateY(-92px) rotate(45deg) scale(1.05); opacity: 0; }
+}
+
+@keyframes reveal {
+  from { transform: translateY(18px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes warm-glow {
-  0% {
-    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.26);
-  }
-  100% {
-    box-shadow: 0 30px 90px rgba(216, 35, 58, 0.28), 0 0 80px rgba(243, 200, 107, 0.18);
-  }
+  from { box-shadow: 0 30px 100px rgba(0, 0, 0, 0.28); }
+  to { box-shadow: 0 30px 100px rgba(58, 167, 255, 0.28), 0 0 90px rgba(255, 211, 110, 0.18); }
 }
 
-@media (max-width: 720px) {
-  .page-shell {
-    padding: 12px;
+@media (max-width: 820px) {
+  .birthday-card {
+    min-height: calc(100vh - 28px);
+    padding: 24px 18px;
+    border-radius: 24px;
   }
 
-  .love-scene {
-    min-height: calc(100vh - 24px);
-    padding: 26px 18px;
+  .language-panel {
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
 
-  .moon,
-  .crescent {
-    width: 82px;
-    height: 82px;
+  .hero-content {
+    padding-top: 28px;
   }
 
-  .moon {
-    top: 26px;
-    right: 24px;
+  .wish-card {
+    align-items: flex-start;
   }
 
-  .crescent {
-    top: 20px;
-    right: 43px;
+  .recadinho-question {
+    max-width: 100%;
   }
 
-  .intro {
-    padding-top: 82px;
-  }
-
-  .buttons {
+  .recadinho-actions {
     min-height: 132px;
   }
 
-  .yes-button,
-  .no-button {
-    min-width: 112px;
-  }
-
-  .message-grid {
+  .love-notes {
     grid-template-columns: 1fr;
   }
 }
