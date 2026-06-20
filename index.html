@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Uma página fofa de feliz aniversário para Abdou, inspirada na Argélia e em azul.">
   <title>Feliz aniversário, Abdou 💙</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <main class="page-shell">
@@ -47,6 +47,15 @@
         </p>
       </div>
 
+      <section class="recadinho-question" id="recadinhoQuestion" aria-labelledby="recadinho-title">
+        <p class="recadinho-title" id="recadinho-title" data-i18n="question">Quer ver o recadinho?</p>
+        <div class="recadinho-actions" id="recadinhoActions">
+          <button class="surprise-button yes-button" id="yesButton" type="button" data-i18n="yesButton">Sim</button>
+          <button class="no-button" id="noButton" type="button" data-i18n="noButton">Não</button>
+        </div>
+        <p class="recadinho-hint" id="recadinhoHint" data-i18n="hint">Acho que o botão certo é o azul...</p>
+      </section>
+
       <section class="love-notes" aria-label="Special notes for Abdou">
         <article class="note-card">
           <span>01</span>
@@ -65,15 +74,6 @@
         </article>
       </section>
 
-      <section class="recadinho-question" id="recadinhoQuestion" aria-labelledby="recadinho-title">
-        <p class="recadinho-title" id="recadinho-title" data-i18n="question">Quer ver o recadinho?</p>
-        <div class="recadinho-actions" id="recadinhoActions">
-          <button class="surprise-button yes-button" id="yesButton" type="button" data-i18n="yesButton">Sim</button>
-          <button class="no-button" id="noButton" type="button" data-i18n="noButton">Não</button>
-        </div>
-        <p class="recadinho-hint" id="recadinhoHint" data-i18n="hint">Acho que o botão certo é o azul...</p>
-      </section>
-
       <section class="surprise" id="surprise" aria-live="polite">
         <p class="arabic-love" lang="ar">نحبك بزاف</p>
         <h2 data-i18n="surpriseTitle">Abdou, hoje o mundo comemora você.</h2>
@@ -84,6 +84,6 @@
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

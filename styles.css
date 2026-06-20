@@ -265,14 +265,19 @@ h1 {
 .recadinho-question {
   position: relative;
   z-index: 1;
-  max-width: 520px;
-  margin-top: 24px;
+  max-width: 680px;
+  margin: 10px 0 30px;
+  padding: 22px;
+  border: 2px solid rgba(255, 211, 110, 0.72);
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(58, 167, 255, 0.28), rgba(255, 255, 255, 0.14));
+  box-shadow: 0 22px 58px rgba(58, 167, 255, 0.22), inset 0 0 34px rgba(255, 255, 255, 0.08);
 }
 
 .recadinho-title {
   margin-bottom: 14px;
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  font-weight: 800;
+  font-size: clamp(1.45rem, 4vw, 2.45rem);
+  font-weight: 900;
 }
 
 .recadinho-actions {
@@ -280,7 +285,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 14px;
-  min-height: 82px;
+  min-height: 96px;
 }
 
 .surprise-button,
@@ -315,8 +320,9 @@ h1 {
 
 .recadinho-hint {
   min-height: 26px;
-  margin: 2px 0 0;
-  color: rgba(255, 250, 242, 0.78);
+  margin: 8px 0 0;
+  color: rgba(255, 250, 242, 0.86);
+  font-weight: 700;
 }
 
 .surprise {
