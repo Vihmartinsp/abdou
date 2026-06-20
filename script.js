@@ -11,7 +11,10 @@ const translations = {
     noteTwoText: "O verde, o branco, o vermelho, a lua e a estrela aparecem aqui como um abraço carinhoso para o lugar onde você está.",
     noteThreeTitle: "Distância pequena",
     noteThreeText: "Brasil e Argélia parecem longe no mapa, mas você fica pertinho em pensamento, em oração e no meu coração.",
-    button: "Abrir meu recadinho",
+    question: "Quer ver o recadinho?",
+    yesButton: "Sim",
+    noButton: "Não",
+    hint: "Acho que o botão certo é o azul...",
     surpriseTitle: "Abdou, hoje o mundo comemora você.",
     surpriseText: "Espero que você sinta, mesmo daí, todo o carinho que coloquei nessa página. Feliz aniversário, meu amor. Que Allah ilumine seus caminhos e que seu sorriso nunca falte. 💙"
   },
@@ -27,7 +30,10 @@ const translations = {
     noteTwoText: "Green, white, red, the moon, and the star are here like a tender hug for the place where you are.",
     noteThreeTitle: "A tiny distance",
     noteThreeText: "Brazil and Algeria look far on a map, but you stay close in my thoughts, my prayers, and my heart.",
-    button: "Open my little note",
+    question: "Do you want to see the little note?",
+    yesButton: "Yes",
+    noButton: "No",
+    hint: "I think the right button is the blue one...",
     surpriseTitle: "Abdou, today the world celebrates you.",
     surpriseText: "I hope you can feel, even from there, all the affection I placed on this page. Happy birthday, my love. May Allah light your path and may your smile never disappear. 💙"
   },
@@ -43,7 +49,10 @@ const translations = {
     noteTwoText: "Le vert, le blanc, le rouge, la lune et l'étoile sont ici comme un câlin tendre pour l'endroit où tu es.",
     noteThreeTitle: "Une petite distance",
     noteThreeText: "Le Brésil et l'Algérie semblent loin sur la carte, mais tu restes proche dans mes pensées, mes prières et mon cœur.",
-    button: "Ouvrir mon petit message",
+    question: "Tu veux voir mon petit message ?",
+    yesButton: "Oui",
+    noButton: "Non",
+    hint: "Je crois que le bon bouton est le bleu...",
     surpriseTitle: "Abdou, aujourd'hui le monde te célèbre.",
     surpriseText: "J'espère que tu sens, même de là-bas, toute l'affection que j'ai mise dans cette page. Joyeux anniversaire, mon amour. Qu'Allah illumine ton chemin et que ton sourire ne manque jamais. 💙"
   },
@@ -59,7 +68,10 @@ const translations = {
     noteTwoText: "الأخضر والأبيض والأحمر والهلال والنجمة هنا مثل عناق حنون للمكان الذي تعيش فيه.",
     noteThreeTitle: "مسافة صغيرة",
     noteThreeText: "تبدو البرازيل والجزائر بعيدتين على الخريطة، لكنك قريب في أفكاري ودعائي وقلبي.",
-    button: "افتح رسالتي الصغيرة",
+    question: "هل تريد أن ترى رسالتي الصغيرة؟",
+    yesButton: "نعم",
+    noButton: "لا",
+    hint: "أظن أن الزر الصحيح هو الأزرق...",
     surpriseTitle: "عبدو، اليوم العالم يحتفل بك.",
     surpriseText: "أتمنى أن تشعر، حتى من هناك، بكل الحب الذي وضعته في هذه الصفحة. عيد ميلاد سعيد يا حبي. الله ينور طريقك ولا تغيب ابتسامتك أبدًا. 💙"
   }
@@ -67,11 +79,26 @@ const translations = {
 
 const languageButtons = document.querySelectorAll(".language-button");
 const translatableElements = document.querySelectorAll("[data-i18n]");
-const surpriseButton = document.querySelector("#surpriseButton");
+const recadinhoQuestion = document.querySelector("#recadinhoQuestion");
+const recadinhoActions = document.querySelector("#recadinhoActions");
+const recadinhoHint = document.querySelector("#recadinhoHint");
+const yesButton = document.querySelector("#yesButton");
+const noButton = document.querySelector("#noButton");
 const surprise = document.querySelector("#surprise");
+
+const noButtonMessages = {
+  pt: ["Tem certeza?", "Pensa com carinho", "Ele quer virar sim", "Última chance", "Agora é sim 💙"],
+  en: ["Are you sure?", "Think with love", "It wants to be yes", "Last chance", "Now it is yes 💙"],
+  fr: ["Tu es sûr ?", "Pense avec amour", "Il veut devenir oui", "Dernière chance", "Maintenant c'est oui 💙"],
+  ar: ["هل أنت متأكد؟", "فكّر بحب", "يريد أن يصبح نعم", "آخر فرصة", "الآن نعم 💙"]
+};
+
+let currentLanguage = "pt";
+let noClicks = 0;
 
 function setLanguage(language) {
   const dictionary = translations[language] || translations.pt;
+  currentLanguage = translations[language] ? language : "pt";
 
   translatableElements.forEach((element) => {
     const key = element.dataset.i18n;
@@ -92,9 +119,40 @@ languageButtons.forEach((button) => {
   button.addEventListener("click", () => setLanguage(button.dataset.lang));
 });
 
-surpriseButton.addEventListener("click", () => {
+function showSurprise() {
   document.body.classList.add("is-celebrating");
   surprise.classList.add("is-visible");
-  surpriseButton.hidden = true;
+  recadinhoQuestion.hidden = true;
   surprise.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function moveNoButton() {
+  const actions = recadinhoActions.getBoundingClientRect();
+  const button = noButton.getBoundingClientRect();
+  const maxX = Math.max(0, actions.width - button.width);
+  const maxY = Math.max(0, actions.height - button.height);
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  noButton.classList.add("is-running");
+  noButton.style.left = `${x}px`;
+  noButton.style.top = `${y}px`;
+}
+
+yesButton.addEventListener("click", showSurprise);
+
+noButton.addEventListener("mouseenter", moveNoButton);
+noButton.addEventListener("click", () => {
+  const messages = noButtonMessages[currentLanguage] || noButtonMessages.pt;
+  noButton.textContent = messages[Math.min(noClicks, messages.length - 1)];
+  recadinhoHint.textContent = messages[Math.min(noClicks, messages.length - 1)];
+  noClicks += 1;
+
+  if (noClicks >= messages.length) {
+    noButton.textContent = translations[currentLanguage].yesButton;
+    setTimeout(showSurprise, 380);
+    return;
+  }
+
+  moveNoButton();
 });

@@ -262,8 +262,29 @@ h1 {
   line-height: 1.6;
 }
 
-.surprise-button {
+.recadinho-question {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
   margin-top: 24px;
+}
+
+.recadinho-title {
+  margin-bottom: 14px;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 800;
+}
+
+.recadinho-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 82px;
+}
+
+.surprise-button,
+.no-button {
   min-height: 54px;
   padding: 0 24px;
   border: 0;
@@ -280,6 +301,22 @@ h1 {
 .surprise-button:focus-visible {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 20px 46px rgba(58, 167, 255, 0.38);
+}
+
+.no-button {
+  background: rgba(255, 250, 242, 0.94);
+  box-shadow: 0 14px 32px rgba(255, 250, 242, 0.16);
+}
+
+.no-button.is-running {
+  position: absolute;
+  z-index: 2;
+}
+
+.recadinho-hint {
+  min-height: 26px;
+  margin: 2px 0 0;
+  color: rgba(255, 250, 242, 0.78);
 }
 
 .surprise {
@@ -386,6 +423,14 @@ html[dir="rtl"] body {
 
   .wish-card {
     align-items: flex-start;
+  }
+
+  .recadinho-question {
+    max-width: 100%;
+  }
+
+  .recadinho-actions {
+    min-height: 132px;
   }
 
   .love-notes {
